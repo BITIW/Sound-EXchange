@@ -1,0 +1,12 @@
+[package]
+name = "sexplan"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+sexrate = { path = "../sexrate" }
+sexq = { path = "../sexq" }
+rug = { version = "=1.30.0", default-features = false, features = ["integer", "std"] }
+
+[dev-dependencies]
+rug = { version = "=1.30.0", default-features = false, features = ["rational", "std"] }

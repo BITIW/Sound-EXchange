@@ -1,0 +1,16 @@
+[package]
+name = "sexbench"
+version = "0.1.0"
+edition = "2024"
+description = "Reproducible execution benchmark for SeX fixed-point resamplers"
+
+[[bin]]
+name = "sex-bench"
+path = "src/main.rs"
+
+[dependencies]
+sexq = { path = "../sexq" }
+sexrate = { path = "../sexrate" }
+
+[lints.rust]
+unsafe_code = "forbid"

@@ -1,0 +1,12 @@
+[package]
+name = "sexdsp"
+version = "0.1.0"
+edition = "2024"
+
+[features]
+default = []
+bigint = ["sexq/bigint", "dep:rug"]
+
+[dependencies]
+sexq = { path = "../sexq", default-features = false }
+rug = { version = "=1.30.0", default-features = false, features = ["integer", "std"], optional = true }

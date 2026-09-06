@@ -1,0 +1,15 @@
+[package]
+name = "sexrate"
+version = "0.1.0"
+edition = "2024"
+description = "Exact-rational sample-rate conversion engine for SeX"
+
+[lib]
+path = "src/lib.rs"
+
+[dependencies]
+sexq = { path = "../sexq", default-features = false, features = ["bigint"] }
+rug = { version = "=1.30.0", default-features = false, features = ["integer", "std"] }
+
+[lints.rust]
+unsafe_code = "forbid"

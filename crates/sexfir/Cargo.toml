@@ -1,0 +1,24 @@
+[package]
+name = "sexfir"
+version = "0.1.0"
+edition = "2024"
+description = "High-precision quantization-aware FIR design for SeX"
+
+[lib]
+path = "src/lib.rs"
+
+[dependencies]
+rug = { version = "=1.30.0", default-features = false, features = ["float", "integer", "rational", "std"] }
+sexplan = { path = "../sexplan" }
+sexq = { path = "../sexq", default-features = false, features = ["bigint"] }
+sexrate = { path = "../sexrate" }
+
+[target.'cfg(target_endian = "little")'.dependencies]
+sha2 = "=0.11.0"
+
+# Keep cache identities portable even when used outside this workspace.
+[target.'cfg(target_endian = "big")'.dependencies]
+sha2_software = { package = "sha2", version = "=0.10.9", features = ["force-soft"] }
+
+[lints.rust]
+unsafe_code = "forbid"

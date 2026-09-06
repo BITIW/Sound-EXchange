@@ -1,0 +1,15 @@
+[package]
+name = "sexio"
+version = "0.1.0"
+edition = "2024"
+description = "Streaming audio format adapters for SeX"
+
+[lib]
+path = "src/lib.rs"
+
+[dependencies]
+hound = "=3.5.1"
+sexq = { path = "../sexq", default-features = false }
+
+[lints.rust]
+unsafe_code = "forbid"

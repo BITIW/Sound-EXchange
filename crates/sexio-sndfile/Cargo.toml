@@ -1,0 +1,16 @@
+[package]
+name = "sexio-sndfile"
+version = "0.1.0"
+edition = "2024"
+description = "Runtime-loaded libsndfile streaming backend for SeX"
+
+[lib]
+path = "src/lib.rs"
+
+[dependencies]
+libloading = "=0.8.9"
+sexio = { path = "../sexio" }
+sexq = { path = "../sexq", default-features = false }
+
+[lints.rust]
+unsafe_code = "deny"

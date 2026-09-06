@@ -1,0 +1,46 @@
+[package]
+name = "sex"
+version = "0.1.0"
+edition = "2024"
+default-run = "sex"
+
+[features]
+# Opt-in upstream cross-build support; it does not change signal algorithms.
+cross-gmp = ["dep:gmp-mpfr-sys", "gmp-mpfr-sys/force-cross"]
+
+[workspace]
+members = [
+    "crates/sexdsp",
+    "crates/sexfir",
+    "crates/sexio",
+    "crates/sexio-sndfile",
+    "crates/sexplan",
+    "crates/sexq",
+    "crates/sexrate",
+    "crates/sexbench",
+    "crates/sexfuzz",
+]
+resolver = "3"
+
+[dependencies]
+sexdsp = { path = "crates/sexdsp", features = ["bigint"] }
+sexfir = { path = "crates/sexfir" }
+sexio = { path = "crates/sexio" }
+sexio-sndfile = { path = "crates/sexio-sndfile" }
+sexplan = { path = "crates/sexplan" }
+sexq = { path = "crates/sexq" }
+sexrate = { path = "crates/sexrate" }
+rug = { version = "=1.30.0", default-features = false, features = ["integer", "float", "std"] }
+gmp-mpfr-sys = { version = "=1.7.1", default-features = false, optional = true }
+
+[target.'cfg(target_endian = "little")'.dependencies]
+sha2 = "=0.11.0"
+
+# sha2 0.11's AArch64 SHA2 intrinsics assume little endian. Select the
+# portable implementation in the dependency graph, including library consumers.
+[target.'cfg(target_endian = "big")'.dependencies]
+sha2_software = { package = "sha2", version = "=0.10.9", features = ["force-soft"] }
+
+[dev-dependencies]
+hound = "=3.5.1"
+rug = { version = "=1.30.0", default-features = false, features = ["float", "rational", "std"] }

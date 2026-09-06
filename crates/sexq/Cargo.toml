@@ -1,0 +1,18 @@
+[package]
+name = "sexq"
+version = "0.1.0"
+edition = "2024"
+description = "Deterministic fixed-point arithmetic for SeX"
+
+[lib]
+path = "src/lib.rs"
+
+[features]
+default = ["bigint"]
+bigint = ["dep:rug"]
+
+[dependencies]
+rug = { version = "=1.30.0", default-features = false, features = ["integer", "std"], optional = true }
+
+[lints.rust]
+unsafe_code = "deny"

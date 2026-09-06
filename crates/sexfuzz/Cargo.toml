@@ -1,0 +1,17 @@
+[package]
+name = "sexfuzz"
+version = "0.1.0"
+edition = "2024"
+description = "Deterministic property-fuzz driver for SeX fixed-point cores"
+
+[[bin]]
+name = "sex-fuzz"
+path = "src/main.rs"
+
+[dependencies]
+sexq = { path = "../sexq" }
+sexrate = { path = "../sexrate" }
+sexio = { path = "../sexio" }
+
+[lints.rust]
+unsafe_code = "forbid"
